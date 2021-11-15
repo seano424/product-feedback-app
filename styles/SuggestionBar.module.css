@@ -1,0 +1,23 @@
+.container {
+  @apply flex items-center bg-dark-200 text-white justify-between p-3 text-xs;
+}
+
+.wrapper {
+  @apply flex items-center cursor-pointer;
+}
+
+.wrapper p {
+  @apply pr-1;
+}
+
+.button {
+  @apply flex items-center space-x-2 bg-primary p-2 rounded-lg;
+}
+
+.sortContainer {
+  @apply bg-white w-64 m-4 rounded-lg;
+}
+
+.item {
+  @apply flex items-center justify-between border-b border-light-200 px-5 py-2 cursor-pointer;
+}

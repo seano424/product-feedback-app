@@ -3,10 +3,11 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   CheckIcon,
+  LightBulbIcon,
 } from '@heroicons/react/solid'
 import useOutsideClick from 'lib/hooks/useOutsideClick'
 import { handleChecked } from '/lib/helpers'
-import AddButton from '@/components/atoms/AddButton'
+import Button from '@/components/atoms/Button'
 import styles from '@/styles/SuggestionBar.module.css'
 
 function Bar() {
@@ -29,7 +30,7 @@ function Bar() {
     <div className="relative">
       <div className="flex items-center bg-dark-200 text-white justify-between p-3 sm:rounded-lg h-20">
         <div className="sm:flex hidden items-center gap-2">
-          <pghtBulbIcon className="h-4" />
+          <LightBulbIcon className="h-4" />
           <p className="font-bold">6 Suggestions</p>
         </div>
         <div
@@ -48,7 +49,7 @@ function Bar() {
             <ChevronDownIcon className="h-4" />
           )}
         </div>
-        <AddButton />
+        <Button type="add" />
       </div>
 
       {/* Sortable Section */}

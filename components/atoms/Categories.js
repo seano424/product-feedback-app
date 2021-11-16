@@ -16,7 +16,7 @@ function Categories() {
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => handleSortBy('all', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             all ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >
@@ -24,7 +24,7 @@ function Categories() {
         </button>
         <button
           onClick={() => handleSortBy('ui', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             ui ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >
@@ -32,7 +32,7 @@ function Categories() {
         </button>
         <button
           onClick={() => handleSortBy('ux', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             ux ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >
@@ -40,7 +40,7 @@ function Categories() {
         </button>
         <button
           onClick={() => handleSortBy('enhancement', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             enhancement ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >
@@ -48,7 +48,7 @@ function Categories() {
         </button>
         <button
           onClick={() => handleSortBy('bug', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             bug ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >
@@ -56,7 +56,7 @@ function Categories() {
         </button>
         <button
           onClick={() => handleSortBy('feature', setSortBy)}
-          className={`bg-light-200 rounded-lg px-5 py-3 text-sm font-semibold ${
+          className={`bg-light-200 rounded-lg px-5 py-3 sm:p-3  text-sm font-semibold ${
             feature ? 'bg-secondary text-white' : 'text-secondary'
           }`}
         >

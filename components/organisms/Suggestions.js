@@ -1,22 +1,23 @@
 import { useState } from 'react'
 import Bar from '../molecules/Bar'
 import Card from '../molecules/Card'
-import AddButton from '@/components/atoms/AddButton'
+import Button from '@/components/atoms/Button'
+import data from '/public/data.json'
 
 function Suggestions() {
   const [suggestions, setSuggestions] = useState([0])
+
+  const { productRequests } = data
   return (
     <>
-      <div className="xl:my-10 xl:ml-40 xl:w-[50rem]">
+      <div className="xl:my-10 xl:ml-64 xl:w-[50rem]">
         <Bar />
 
         {suggestions.length ? (
           <>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {productRequests.map((product) => (
+              <Card key={product.id} {...product} />
+            ))}
           </>
         ) : (
           <div className="flex flex-col items-center  mt-8 rounded-lg text-center mx-10 sm:mx-auto gap-5 bg-white p-20">
@@ -32,7 +33,7 @@ function Suggestions() {
               Got a suggestion? Found a bug that needs to be squashed? We love
               hearing about new ideas to improve our app.
             </p>
-            <AddButton />
+            <Button type="add" />
           </div>
         )}
       </div>

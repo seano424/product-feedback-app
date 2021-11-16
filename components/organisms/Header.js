@@ -11,11 +11,11 @@ function Header() {
 
   return (
     <div>
-      <div className="grid-cols-3 my-10 gap-2 hidden sm:grid xl:flex xl:flex-col xl:w-72 xl:fixed xl:left-24">
+      <div className="grid-cols-3 my-10 gap-2 hidden sm:grid xl:flex xl:flex-col xl:w-72 xl:fixed xl:left-24 ">
         {/* Left */}
         <div className="relative">
           <img
-            className="w-full h-full xl:w-72 xl:h-48 rounded-lg"
+            className="w-full h-full xl:w-72 md:h-48 rounded-lg"
             src="/assets/suggestions/tablet/background-header.png"
             alt=""
           />

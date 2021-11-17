@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import { signIn, signOut } from 'next-auth/react'
-import { useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 function Layout({ children, page }) {
   const { data: session } = useSession()
   return (
@@ -8,14 +7,14 @@ function Layout({ children, page }) {
       {session ? (
         <button
           className="hidden mx-10 xl:mx-24 py-2 text-dark-200 sm:inline-flex"
-          onClick={() => signOut()}
+          onClick={signOut}
         >
           Sign out
         </button>
       ) : (
         <button
           className="hidden mx-10 xl:mx-24 py-2 text-dark-200 sm:inline-flex"
-          onClick={() => signIn()}
+          onClick={signIn}
         >
           Sign in
         </button>

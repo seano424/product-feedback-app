@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { signIn, signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
 function Layout({ children, page }) {
   const { data: session } = useSession()

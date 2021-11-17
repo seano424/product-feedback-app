@@ -8,6 +8,8 @@ function CommentCard({
   content,
   replyingTo,
   replies,
+  commentId,
+  productId,
 }) {
   const [openReply, setOpenReply] = useState(false)
 
@@ -48,7 +50,14 @@ function CommentCard({
               </p>
             </div>
           </div>
-          {openReply && <AddReply />}
+          {openReply && (
+            <AddReply
+              setOpenReply={setOpenReply}
+              productId={productId}
+              commentId={commentId}
+              replyingTo={username}
+            />
+          )}
         </div>
       </div>
     </>

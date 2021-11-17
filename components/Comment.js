@@ -33,6 +33,8 @@ function Comment({ comment, id, commentId }) {
   return (
     <section className="my-8">
       <CommentCard
+        commentId={commentId}
+        productId={id}
         userimage={userimage}
         name={name}
         username={username}
@@ -44,6 +46,8 @@ function Comment({ comment, id, commentId }) {
       {replies &&
         replies.map((reply) => (
           <CommentCard
+            commentId={commentId}
+            productId={id}
             key={reply.id}
             userimage={reply.data().userimage}
             name={reply.data().name}

@@ -17,6 +17,10 @@ function ProductReviews() {
   const dispatch = useDispatch()
   const [loading, setLoading] = useState(true)
   const productReviews = useSelector(selectProductReviews)
+  const arrayForSort = [...productReviews]
+
+  arrayForSort.sort((a, b) => (a.upVotes.length < b.upVotes.length && 1) || -1)
+  console.log('sorted', arrayForSort)
 
   useEffect(
     () =>

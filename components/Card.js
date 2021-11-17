@@ -14,6 +14,7 @@ import {
   doc,
 } from '@firebase/firestore'
 import { useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 
 function Card({ id }) {
   const { data: session } = useSession()
@@ -45,6 +46,8 @@ function Card({ id }) {
   }
 
   const handleVote = async (e) => {
+    !session && signIn()
+    if (!session) return
     e.stopPropagation()
     console.log('hello from the vote')
     if (hasVoted) {

@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
 import { useDispatch } from 'react-redux'
 import { onSnapshot, query, collection } from '@firebase/firestore'
-import { setProductReviews } from '@/redux/features/productReview/productReviewSlice'
+import {
+  setProductReviews,
+  setUpvotes,
+  setComments,
+} from '@/redux/features/productReview/productReviewSlice'
 import { db } from '../firebase'
 
 function ProductReviews() {
@@ -22,11 +26,39 @@ function ProductReviews() {
         })
         setLoading(false)
         dispatch(setProductReviews(tempProductReviews))
+        tempProductReviews.map((product) => {
+          onSnapshot(
+            query(collection(db, 'productRequests', product.id, 'upVotes')),
+            (snapshot) => {
+              const tempVotes = snapshot.docs.map((doc) => {
+                return {
+                  ...doc.data(),
+                  voterId: doc.id,
+                  productReviewId: product.id,
+                }
+              })
+              tempVotes.length > 0 && dispatch(setUpvotes(tempVotes))
+            }
+          )
+        })
+        tempProductReviews.map((product) => {
+          onSnapshot(
+            query(collection(db, 'productRequests', product.id, 'comments')),
+            (snapshot) => {
+              const tempComments = snapshot.docs.map((doc) => {
+                return {
+                  ...doc.data(),
+                  commentId: doc.id,
+                  productReviewId: product.id,
+                }
+              })
+              tempComments.length > 0 && dispatch(setComments(tempComments))
+            }
+          )
+        })
       }),
     [db]
   )
-
-  console.log('product reviews:', productReviews)
 
   return (
     <>
@@ -36,7 +68,7 @@ function ProductReviews() {
           {productReviews.length ? (
             <div className="mx-8 sm:mx-0">
               {productReviews.map((product) => (
-                <Card key={product.id} id={product.id} />
+                <Card key={product.id} id={product.id} data={product} />
               ))}
             </div>
           ) : (

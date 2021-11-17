@@ -8,10 +8,7 @@ import { useSession } from 'next-auth/react'
 import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
 import { db } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  setProductReviews,
-  selectProductReviews,
-} from '@/redux/features/productReview/productReviewSlice'
+import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
 
 function New() {
   const { data: session } = useSession()

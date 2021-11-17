@@ -12,4 +12,11 @@ export default NextAuth({
   pages: {
     signIn: '/auth/signin',
   },
+  jwt: {
+    // A secret to use for key generation. Defaults to the top-level `session`.
+    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
+  },
+  secret: {
+    secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
+  },
 })

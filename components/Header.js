@@ -2,8 +2,8 @@ import HamburgerIcon from 'public/assets/shared/mobile/icon-hamburger.svg'
 import CloseIcon from 'public/assets/shared/mobile/icon-close.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { setModal } from '@/redux/features/modal/modalSlice'
-import Roadmap from '@/components/atoms/Roadmap'
-import Categories from '@/components/atoms/Categories'
+import Roadmap from '@/components/Roadmap'
+import Categories from '@/components/Categories'
 
 function Header() {
   const open = useSelector((state) => state.modal.open)

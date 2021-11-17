@@ -1,12 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setModal } from '@/redux/features/modal/modalSlice'
 import Categories from './Categories'
 import Roadmap from './Roadmap'
 
-export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(true)
+export default function SidePanel() {
   const open = useSelector((state) => state.modal.open)
   const dispatch = useDispatch()
 

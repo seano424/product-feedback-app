@@ -1,14 +1,6 @@
 import { getProviders, signIn } from 'next-auth/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUserLogin } from '@/redux/features/user/userSlice'
 
 export default function SignIn({ providers }) {
-  const dispatch = useDispatch()
-
-  const handleSignIn = async () => {
-    await dispatch(setUserLogin({}))
-    signIn(provider.id, { callbackUrl: '/' })
-  }
   return (
     <div className="h-screen w-screen flex">
       <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-24 text-center w-screen">
@@ -23,7 +15,7 @@ export default function SignIn({ providers }) {
             <div key={provider.name}>
               <button
                 className="p-3 bg-secondary rounded-lg text-white"
-                onClick={handleSignIn}
+                onClick={() => signIn(provider.id, { callbackUrl: '/' })}
               >
                 Sign in with {provider.name}
               </button>

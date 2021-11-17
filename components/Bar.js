@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/solid'
 import useOutsideClick from 'lib/hooks/useOutsideClick'
 import { handleChecked } from '/lib/helpers'
-import Button from '@/components/atoms/Button'
+import Button from '@/components/Button'
 import styles from '@/styles/SuggestionBar.module.css'
 
 function Bar() {
@@ -59,28 +59,36 @@ function Bar() {
           className={'bg-white w-64 m-4 rounded-lg absolute shadow sm:left-56'}
         >
           <div
-            onClick={() => handleChecked('mostUpvotes', setChecked)}
+            onClick={() =>
+              handleChecked('mostUpvotes', setChecked, setOpenSortable)
+            }
             className={styles.item}
           >
             <p className="hover:text-primary">Most Upvotes</p>
             {mostUpvotes && <CheckIcon className="h-4 text-primary" />}
           </div>
           <div
-            onClick={() => handleChecked('leastUpvotes', setChecked)}
+            onClick={() =>
+              handleChecked('leastUpvotes', setChecked, setOpenSortable)
+            }
             className={styles.item}
           >
             <p className="hover:text-primary">Least Upvotes</p>
             {leastUpvotes && <CheckIcon className="h-4 text-primary" />}
           </div>
           <div
-            onClick={() => handleChecked('mostComments', setChecked)}
+            onClick={() =>
+              handleChecked('mostComments', setChecked, setOpenSortable)
+            }
             className={styles.item}
           >
             <p className="hover:text-primary">Most Comments</p>
             {mostComments && <CheckIcon className="h-4 text-primary" />}
           </div>
           <div
-            onClick={() => handleChecked('leastComments', setChecked)}
+            onClick={() =>
+              handleChecked('leastComments', setChecked, setOpenSortable)
+            }
             className={styles.item}
           >
             <p className="hover:text-primary">Least Comments</p>

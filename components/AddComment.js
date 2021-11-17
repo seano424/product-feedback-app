@@ -21,7 +21,7 @@ function AddComment() {
             id="comment"
             name="comment"
             type="comment"
-            className="bg-light-100 pl-4 pt-4 pb-10 mb-4 active:outline-none focus:outline-none"
+            className="bg-light-100 rounded-lg pl-4 pt-4 pb-10 mb-4 active:outline-none focus:outline-none"
             onChange={formik.handleChange}
             value={formik.values.comment}
           />

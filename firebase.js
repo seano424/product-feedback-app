@@ -19,7 +19,9 @@ const firebaseConfig = {
   appId: '1:435685848389:web:b2e1824ec4df5dd7bdba2c',
   measurementId: 'G-4E37T8WLQ4',
 }
-
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig)
-// const analytics = getAnalytics(app)
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
+const db = getFirestore()
+const storage = getStorage()
+
+export { app, db, storage }

@@ -18,6 +18,13 @@ export const productReviewSlice = createSlice({
           : review
       )
     },
+    setReplies: (state, action) => {
+      state.productReviews.find((review) =>
+        review.id === action.payload[0].productReviewId
+          ? (review.replies = action.payload)
+          : review
+      )
+    },
     setUpvotes: (state, action) => {
       state.productReviews.find((review) =>
         review.id === action.payload[0].productReviewId
@@ -28,7 +35,7 @@ export const productReviewSlice = createSlice({
   },
 })
 
-export const { setProductReviews, setComments, setUpvotes } =
+export const { setProductReviews, setComments, setUpvotes, setReplies } =
   productReviewSlice.actions
 
 export const selectProductReviews = (state) =>

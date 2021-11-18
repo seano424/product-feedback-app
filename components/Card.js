@@ -24,6 +24,13 @@ function Card({ id }) {
   const [upVotes, setUpvotes] = useState([])
   const [hasVoted, setHasVoted] = useState(false)
 
+  const totalMessages =
+    product.comments && product.replies
+      ? product.replies?.length + product.comments?.length
+      : product.comments
+      ? product.comments.length
+      : 0
+
   useEffect(
     () =>
       onSnapshot(
@@ -93,7 +100,7 @@ function Card({ id }) {
             <article className="hidden sm:flex ">
               <div className="flex items-center gap-2">
                 <Comment />
-                <p>{product.comments ? product.comments.length : 0}</p>
+                <p>{totalMessages}</p>
               </div>
             </article>
 
@@ -110,7 +117,7 @@ function Card({ id }) {
               </div>
               <div className="flex items-center gap-2">
                 <Comment />
-                <p>{product.comments ? product.comments.length : 0}</p>
+                <p>{totalMessages}</p>
               </div>
             </article>
           </section>

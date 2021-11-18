@@ -1,67 +1,13 @@
-import { useState, useEffect } from 'react'
 import Bar from './Bar'
 import Card from './Card'
 import Button from '@/components/Button'
 import { useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
-import { useDispatch } from 'react-redux'
-import { onSnapshot, query, collection } from '@firebase/firestore'
-import {
-  setProductReviews,
-  setUpvotes,
-  setComments,
-} from '@/redux/features/productReview/productReviewSlice'
-import { db } from '../firebase'
+import useFetchFeedback from 'hooks/useFetchFeedback'
 
 function ProductReviews() {
-  const dispatch = useDispatch()
-  const [loading, setLoading] = useState(true)
   const productReviews = useSelector(selectProductReviews)
-  const arrayForSort = [...productReviews]
-
-  arrayForSort.sort((a, b) => (a.upVotes.length < b.upVotes.length && 1) || -1)
-
-  useEffect(
-    () =>
-      onSnapshot(query(collection(db, 'productRequests')), (snapshot) => {
-        let tempProductReviews = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data(), comments: [], upVotes: [] }
-        })
-        setLoading(false)
-        dispatch(setProductReviews(tempProductReviews))
-        tempProductReviews.map((product) => {
-          onSnapshot(
-            query(collection(db, 'productRequests', product.id, 'upVotes')),
-            (snapshot) => {
-              const tempVotes = snapshot.docs.map((doc) => {
-                return {
-                  ...doc.data(),
-                  voterId: doc.id,
-                  productReviewId: product.id,
-                }
-              })
-              tempVotes.length > 0 && dispatch(setUpvotes(tempVotes))
-            }
-          )
-        })
-        tempProductReviews.map((product) => {
-          onSnapshot(
-            query(collection(db, 'productRequests', product.id, 'comments')),
-            (snapshot) => {
-              const tempComments = snapshot.docs.map((doc) => {
-                return {
-                  ...doc.data(),
-                  commentId: doc.id,
-                  productReviewId: product.id,
-                }
-              })
-              tempComments.length > 0 && dispatch(setComments(tempComments))
-            }
-          )
-        })
-      }),
-    [db]
-  )
+  const { loading } = useFetchFeedback()
 
   return (
     <>

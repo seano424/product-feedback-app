@@ -64,8 +64,9 @@ function MessageCard({
           </div>
           <div onClick={removeReply} className="flex items-center space-x-2">
             {session?.user.username === username && (
-              <TrashIcon className="text-[red] h-4 cursor-pointer" />
+              <TrashIcon className="text-[#ff5ccc] h-6 cursor-pointer" />
             )}
+
             <p
               onClick={() => setOpenReply(!openReply)}
               className="text-secondary font-medium cursor-pointer"

@@ -12,21 +12,21 @@ export const productReviewSlice = createSlice({
       state.productReviews = action.payload
     },
     setComments: (state, action) => {
-      state.productReviews.find((review) =>
+      state.productReviews.map((review) =>
         review.id === action.payload[0].productReviewId
           ? (review.comments = action.payload)
           : review
       )
     },
     setReplies: (state, action) => {
-      state.productReviews.find((review) =>
+      state.productReviews.map((review) =>
         review.id === action.payload[0].productReviewId
           ? (review.replies = action.payload)
           : review
       )
     },
     setUpvotes: (state, action) => {
-      state.productReviews.find((review) =>
+      state.productReviews.map((review) =>
         review.id === action.payload[0].productReviewId
           ? (review.upVotes = action.payload)
           : review

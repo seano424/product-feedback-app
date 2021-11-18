@@ -6,14 +6,14 @@ function Layout({ children, page }) {
     <>
       {session ? (
         <button
-          className="hidden mx-10 xl:mx-24 py-2 text-dark-200 sm:inline-flex"
+          className="hidden px-10 bg-[#ffe5cc] w-full xl:px-24 py-2 text-dark-200 sm:inline-flex"
           onClick={signOut}
         >
           Sign out
         </button>
       ) : (
         <button
-          className="hidden mx-10 xl:mx-24 py-2 text-dark-200 sm:inline-flex"
+          className="hidden px-10 bg-[#ffe5cc] w-full xl:px-24 py-2 text-dark-200 sm:inline-flex"
           onClick={signIn}
         >
           Sign in

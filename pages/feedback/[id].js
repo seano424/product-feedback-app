@@ -18,6 +18,7 @@ import {
   setUpvotes,
   setComments,
 } from '@/redux/features/productReview/productReviewSlice'
+import DeleteModal from '@/components/DeleteModal'
 
 function Feedback({ id }) {
   const [loading, setLoading] = useState(true)
@@ -70,6 +71,7 @@ function Feedback({ id }) {
       {!loading && (
         <>
           <Back button="edit" />
+          <DeleteModal />
           <Card id={id} />
           <Comments id={id} />
         </>

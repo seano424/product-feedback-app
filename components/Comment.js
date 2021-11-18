@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { onSnapshot, query, collection } from '@firebase/firestore'
 import { db } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux'
-import CommentCard from '@/components/CommentCard'
+import MessageCard from '@/components/MessageCard'
 import AddReply from '@/components/AddReply'
 
 function Comment({ comment, id, commentId }) {
@@ -32,7 +32,7 @@ function Comment({ comment, id, commentId }) {
 
   return (
     <section className="my-8">
-      <CommentCard
+      <MessageCard
         commentId={commentId}
         productId={id}
         userimage={userimage}
@@ -45,9 +45,10 @@ function Comment({ comment, id, commentId }) {
       {/* Replies */}
       {replies &&
         replies.map((reply) => (
-          <CommentCard
+          <MessageCard
             commentId={commentId}
             productId={id}
+            replyId={reply.id}
             key={reply.id}
             userimage={reply.data().userimage}
             name={reply.data().name}

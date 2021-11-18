@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { signIn, signOut, useSession } from 'next-auth/react'
 function Layout({ children, page }) {
   const { data: session } = useSession()
-  console.log(session)
   return (
     <>
       {session ? (

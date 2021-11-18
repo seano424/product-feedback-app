@@ -7,7 +7,7 @@ import { signIn, useSession } from 'next-auth/react'
 function AddReply({ replyingTo, commentId, productId, setOpenReply }) {
   const { data: session } = useSession()
 
-  const sendComment = async (values) => {
+  const sendReply = async (values) => {
     !session && signIn()
     if (!session) return
     try {
@@ -29,7 +29,6 @@ function AddReply({ replyingTo, commentId, productId, setOpenReply }) {
           userimage: session.user.image,
         }
       )
-      console.log('Added!', reply, commentId)
       setOpenReply(false)
     } catch (error) {
       console.log(error)
@@ -41,7 +40,7 @@ function AddReply({ replyingTo, commentId, productId, setOpenReply }) {
       reply: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      await sendComment(values)
+      await sendReply(values)
       resetForm()
     },
   })

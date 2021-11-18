@@ -13,10 +13,6 @@ export default function SidePanel() {
     dispatch(setModal())
   }
 
-  function openModal() {
-    dispatch(setModal())
-  }
-
   return (
     <>
       <Transition appear show={open} as={Fragment}>

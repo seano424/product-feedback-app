@@ -1,13 +1,47 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/dist/client/router'
+import { db } from '../firebase'
 
 function AddComment() {
+  const router = useRouter()
+  const { data: session } = useSession()
+  const productId = router.query.id
+
+  const sendComment = async (values) => {
+    !session && signIn()
+    if (!session) return
+    try {
+      await addDoc(collection(db, 'productRequests', productId, 'comments'), {
+        timestamp: serverTimestamp(),
+        name: session.user.name,
+        content: values.comment,
+        username: session.user.username,
+        userimage: session.user.image,
+      })
+      const commentToAdd = {
+        timestamp: serverTimestamp(),
+        name: session.user.name,
+        content: values.comment,
+        username: session.user.username,
+        userimage: session.user.image,
+      }
+      console.log('Test Added comment', commentToAdd, productId)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const formik = useFormik({
     initialValues: {
       comment: '',
     },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
+    onSubmit: async (values, { resetForm }) => {
+      // alert(JSON.stringify(values, null, 2))
+      await sendComment(values)
+      resetForm()
     },
   })
 

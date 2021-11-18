@@ -20,7 +20,6 @@ function ProductReviews() {
   const arrayForSort = [...productReviews]
 
   arrayForSort.sort((a, b) => (a.upVotes.length < b.upVotes.length && 1) || -1)
-  console.log('sorted', arrayForSort)
 
   useEffect(
     () =>

@@ -71,7 +71,7 @@ function Feedback({ id }) {
       {!loading && (
         <>
           <Back button="edit" />
-          <DeleteModal />
+          <DeleteModal page="messages" />
           <Card id={id} />
           <Comments id={id} />
         </>

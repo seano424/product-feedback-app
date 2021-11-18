@@ -49,7 +49,6 @@ function Card({ id }) {
     !session && signIn()
     if (!session) return
     e.stopPropagation()
-    console.log('hello from the vote')
     if (hasVoted) {
       await deleteDoc(
         doc(db, 'productRequests', id, 'upVotes', session.user.uid)

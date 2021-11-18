@@ -10,8 +10,9 @@ function Button({ type }) {
   const router = useRouter()
   const { data: session } = useSession()
 
-  const handleClick = () => {
-    session && router.push('/new')
+  const handleClick = (page) => {
+    session && page === 'new' && router.push('/new')
+    session && page === 'edit' && router.push(`/edit/${router.query.id}`)
     !session && signIn()
   }
   return (
@@ -20,10 +21,12 @@ function Button({ type }) {
         type === 'edit' && 'bg-dark-300'
       } ${type === 'add' && 'bg-primary'}`}
     >
-      {type === 'edit' && <h3>Edit Feedback</h3>}
+      {type === 'edit' && (
+        <h3 onClick={() => handleClick('edit')}>Edit Feedback</h3>
+      )}
       {type === 'add' && (
         <div
-          onClick={handleClick}
+          onClick={() => handleClick('new')}
           className="flex items-center justify-between space-x-1"
         >
           <PlusIcon className="h-4" />

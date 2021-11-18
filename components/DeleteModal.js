@@ -4,40 +4,59 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setOpenDestroyModal } from '@/redux/features/modal/modalSlice'
 import { deleteDoc, doc } from '@firebase/firestore'
 import { db } from '../firebase'
+import { useRouter } from 'next/dist/client/router'
 
-export default function DeleteModal() {
+export default function DeleteModal({ page }) {
   const dispatch = useDispatch()
   const open = useSelector((state) => state.modal.openDestroyModal)
   const data = useSelector((state) => state.modal.destroyData)
+  const router = useRouter()
 
   function closeModal() {
     dispatch(setOpenDestroyModal())
   }
 
-  const destroyMessage = async () => {
+  const destroy = async () => {
     dispatch(setOpenDestroyModal())
     try {
-      // To delete a comment
-      data.replyingTo &&
-        (await deleteDoc(
-          doc(
-            db,
-            'productRequests',
-            data.productId,
-            'comments',
-            data.commentId,
-            'replies',
-            data.replyId
-          )
-        ))
-      data.replyingTo && console.log('deleted reply:', data.replyId)
+      if (page === 'messages') {
+        // To delete a comment
+        data.replyingTo &&
+          (await deleteDoc(
+            doc(
+              db,
+              'productRequests',
+              data.productId,
+              'comments',
+              data.commentId,
+              'replies',
+              data.replyId
+            )
+          ))
+        data.replyingTo && console.log('deleted reply:', data.replyId)
 
-      // To delete a reply
-      !data.replyingTo &&
-        (await deleteDoc(
-          doc(db, 'productRequests', data.productId, 'comments', data.commentId)
-        ))
-      !data.replyingTo && console.log('deleted comment:', data.commentId)
+        // To delete a reply
+        !data.replyingTo &&
+          (await deleteDoc(
+            doc(
+              db,
+              'productRequests',
+              data.productId,
+              'comments',
+              data.commentId
+            )
+          ))
+        !data.replyingTo && console.log('deleted comment:', data.commentId)
+      }
+      if (page === 'edit') {
+        try {
+          await deleteDoc(doc(db, 'productRequests', data.productId))
+          console.log('Deleted:', data)
+          router.push('/')
+        } catch (error) {
+          console.log(error)
+        }
+      }
     } catch (error) {
       console.log(error)
     }
@@ -89,8 +108,10 @@ export default function DeleteModal() {
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Your message will be permanently delelted and cannot be
-                    undone.
+                    {`Your ${
+                      page === 'edit' ? 'feedback' : 'message'
+                    } will be permanently deleted. This cannot be
+                    undone.`}
                   </p>
                 </div>
 
@@ -105,7 +126,7 @@ export default function DeleteModal() {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-light-100 bg-[#fa3333] border border-transparent rounded-md hover:bg-gradient-1 focus:outline-none  "
-                    onClick={destroyMessage}
+                    onClick={destroy}
                   >
                     Delete this thing
                   </button>

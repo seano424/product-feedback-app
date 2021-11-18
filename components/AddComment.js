@@ -28,7 +28,6 @@ function AddComment() {
         username: session.user.username,
         userimage: session.user.image,
       }
-      console.log('Test Added comment', commentToAdd, productId)
     } catch (error) {
       console.log(error)
     }

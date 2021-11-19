@@ -1,0 +1,11 @@
+.container {
+  @apply flex space-x-2 justify-between;
+}
+
+.wrapper {
+  @apply flex-1 pl-2;
+}
+
+.divider {
+  @apply flex justify-between space-x-4;
+}

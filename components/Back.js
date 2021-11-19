@@ -5,7 +5,7 @@ import Button from './Button'
 function Back({ button, color }) {
   const { back } = useRouter()
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between my-2">
       <div
         onClick={() => back()}
         className={`flex space-x-2 cursor-pointer items-center ${

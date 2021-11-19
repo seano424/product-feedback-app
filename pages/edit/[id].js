@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { useSession } from 'next-auth/react'
 import { db } from '../../firebase'
-import DeleteModal from '@/components/DeleteModal'
+import DeleteModal from '@/components/DeleteModal/DeleteModal'
 import {
   getDocs,
   doc,
@@ -11,7 +11,7 @@ import {
   setDoc,
   serverTimestamp,
 } from '@firebase/firestore'
-import ProductForm from '@/components/ProductForm'
+import ProductForm from '@/components/ProductForm/ProductForm'
 
 function Edit({ product }) {
   const { data: session } = useSession()

@@ -1,0 +1,11 @@
+.container {
+  @apply px-8 pb-8 pt-4 mb-8 shadow-lg cursor-pointer bg-white flex flex-col rounded-lg sm:justify-between gap-4 sm:gap-8;
+}
+
+.votes {
+  @apply bg-light-200 rounded-lg px-3 py-2 flex flex-col items-center cursor-pointer;
+}
+
+.votes p {
+  @apply tracking-tighter text-sm md:text-lg;
+}

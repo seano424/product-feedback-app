@@ -5,10 +5,11 @@ import {
 } from '@/redux/features/productReview/productReviewSlice'
 import useFetchFeedback from 'hooks/useFetchFeedback'
 import Button from '@/components/Button'
-import Bar from '@/components//Bar'
-import Card from '@/components//Card'
+import Bar from '@/components/Bar/Bar'
+import Card from '@/components/Card/Card'
+import styles from './Requests.module.css'
 
-function ProductReviews() {
+function Requests() {
   const productReviews = useSelector(selectProductReviews)
   const category = useSelector(selectCategory)
   const { loading } = useFetchFeedback()
@@ -35,31 +36,29 @@ function ProductReviews() {
   return (
     <>
       {!loading && (
-        <div className="xl:my-10 xl:ml-64 xl:w-[50rem]">
+        <div className={styles.container}>
           <Bar />
           {productReviews.length ? (
-            <div className="mx-8 sm:mx-0">
+            <div className={styles.wrapper}>
               {copy().length ? (
                 copy().map((product) => (
                   <Card key={product.id} id={product.id} data={product} />
                 ))
               ) : (
-                <div className="flex justify-center items-center h-40 text-2xl text-center font-black ">
+                <div className={styles.emptyRequests}>
                   Looks like there are no requests under this category...
                 </div>
               )}
             </div>
           ) : (
-            <div className="flex flex-col items-center  mt-8 rounded-lg text-center mx-10 sm:mx-auto gap-5 bg-white p-20">
+            <div className={styles.emptyContainer}>
               <img
                 className="w-28"
                 src="/assets/suggestions/illustration-empty.svg"
                 alt=""
               />
-              <h2 className="font-bold text-dark-200 tracking-wide pt-4">
-                There is no feedback yet.
-              </h2>
-              <p className=" text-dark-100 pb-4">
+              <h2>There is no feedback yet.</h2>
+              <p>
                 Got a suggestion? Found a bug that needs to be squashed? We love
                 hearing about new ideas to improve our app.
               </p>
@@ -72,4 +71,4 @@ function ProductReviews() {
   )
 }
 
-export default ProductReviews
+export default Requests

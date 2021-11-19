@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import Comment from '@/components/Comment'
-import AddComment from '@/components/AddComment'
+import AddComment from '@/components/AddComment/AddComment'
+import styles from './Comments.module.css'
 
 function Comments({ id }) {
   const state = useSelector((state) => state.productReview.productReviews)
@@ -8,8 +9,8 @@ function Comments({ id }) {
 
   return (
     <>
-      <section className="bg-white rounded-lg px-8 py-4 my-4">
-        <h1 className="text-lg font-bold mt-4 mb-8">
+      <section className={styles.container}>
+        <h1>
           {product.comments.length === 1
             ? `${product.comments.length} Comment`
             : `${product.comments.length} Comments`}

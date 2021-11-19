@@ -1,0 +1,11 @@
+.container {
+  @apply w-full lg:hidden mx-auto px-2 py-16 sm:px-0;
+}
+
+.tabList {
+  @apply flex space-x-1 border-b border-light-200;
+}
+
+.tabPanel {
+  @apply flex items-center space-x-2 text-2xl font-bold tracking-wide mb-4;
+}

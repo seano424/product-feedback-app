@@ -17,3 +17,51 @@ html {
 * {
   font-family: 'Jost', sans-serif;
 }
+
+h1 {
+  @apply text-lg md:text-xl font-bold;
+}
+
+h2 {
+  @apply text-lg font-bold text-dark-200;
+}
+
+h4 {
+  @apply font-bold text-base md:text-lg;
+}
+
+p {
+  @apply text-base md:text-lg;
+}
+
+.input {
+  @apply bg-light-100 rounded-lg pl-4 pt-4 pb-10 mb-4 active:outline-none focus:outline-none;
+}
+
+.button {
+  @apply text-white px-4 py-2 rounded-lg;
+}
+
+.icon {
+  @apply h-4;
+}
+
+.button-2 {
+  @apply max-w-max px-3 py-2 rounded-lg font-semibold;
+}
+
+.button-delete {
+  @apply inline-flex justify-center px-4 py-2 text-sm font-medium text-light-100 border  rounded-md hover:bg-gradient-1 focus:outline-none;
+}
+
+.avatar {
+  @apply rounded-full h-10;
+}
+
+label {
+  @apply font-bold text-sm md:text-lg;
+}
+
+.dot {
+  @apply rounded-full h-2 w-2;
+}

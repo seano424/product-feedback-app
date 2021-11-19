@@ -8,7 +8,7 @@ import {
 import useOutsideClick from 'lib/hooks/useOutsideClick'
 import { handleChecked } from '@/lib/helpers'
 import Button from '@/components/Button'
-import styles from '@/styles/SuggestionBar.module.css'
+import styles from './Bar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   setLeastCommentsSort,
@@ -37,18 +37,18 @@ function Bar() {
   const { mostComments, mostUpvotes, leastComments, leastUpvotes } = checked
 
   return (
-    <div className="relative">
-      <div className="flex items-center bg-dark-200 text-white justify-between p-3 sm:rounded-lg h-20">
-        <div className="sm:flex hidden items-center gap-2">
+    <>
+      <section className={styles.container}>
+        <div className={styles.left}>
           <LightBulbIcon
             onClick={() => dispatch(setLeastCommentsSort())}
-            className="h-4"
+            className="icon"
           />
           <p className="font-bold">{productCount} Suggestions</p>
         </div>
         <div
           onClick={() => setOpenSortable(!openSortable)}
-          className="flex items-center cursor-pointer justify-between"
+          className={styles.center}
         >
           <p className="pr-1">Sort by: </p>
           {mostComments && <p>Most Comments</p>}
@@ -57,20 +57,17 @@ function Bar() {
           {leastUpvotes && <p>Least Upvotes</p>}
 
           {openSortable ? (
-            <ChevronUpIcon className="h-4" />
+            <ChevronUpIcon className="icon" />
           ) : (
-            <ChevronDownIcon className="h-4" />
+            <ChevronDownIcon className="icon" />
           )}
         </div>
         <Button type="add" />
-      </div>
+      </section>
 
       {/* Sortable Section */}
       {openSortable && (
-        <div
-          ref={ref}
-          className={'bg-white w-64 m-4 rounded-lg absolute shadow sm:left-56'}
-        >
+        <div ref={ref} className={styles.sortable}>
           <div
             onClick={() =>
               handleChecked(
@@ -83,8 +80,8 @@ function Bar() {
             }
             className={styles.item}
           >
-            <p className="hover:text-primary">Most Upvotes</p>
-            {mostUpvotes && <CheckIcon className="h-4 text-primary" />}
+            <p className={styles.listItem}>Most Upvotes</p>
+            {mostUpvotes && <CheckIcon className="icon text-primary" />}
           </div>
           <div
             onClick={() =>
@@ -98,8 +95,8 @@ function Bar() {
             }
             className={styles.item}
           >
-            <p className="hover:text-primary">Least Upvotes</p>
-            {leastUpvotes && <CheckIcon className="h-4 text-primary" />}
+            <p className={styles.listItem}>Least Upvotes</p>
+            {leastUpvotes && <CheckIcon className="icon text-primary" />}
           </div>
           <div
             onClick={() =>
@@ -113,8 +110,8 @@ function Bar() {
             }
             className={styles.item}
           >
-            <p className="hover:text-primary">Most Comments</p>
-            {mostComments && <CheckIcon className="h-4 text-primary" />}
+            <p className={styles.listItem}>Most Comments</p>
+            {mostComments && <CheckIcon className="icon text-primary" />}
           </div>
           <div
             onClick={() =>
@@ -128,12 +125,12 @@ function Bar() {
             }
             className={styles.item}
           >
-            <p className="hover:text-primary">Least Comments</p>
-            {leastComments && <CheckIcon className="h-4 text-primary" />}
+            <p className={styles.listItem}>Least Comments</p>
+            {leastComments && <CheckIcon className="icon text-primary" />}
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

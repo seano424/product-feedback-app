@@ -1,11 +1,11 @@
 import { db } from '../../firebase'
 import { getDocs, collection } from '@firebase/firestore'
-import Card from '@/components/Card'
-import Layout from '@/components/Layout'
+import Card from '@/components/Card/Card'
+import Layout from '@/components/Layout/Layout'
 import Back from '@/components/Back'
-import Comments from '@/components/Comments'
+import Comments from '@/components/Comments/Comments'
 
-import DeleteModal from '@/components/DeleteModal'
+import DeleteModal from '@/components/DeleteModal/DeleteModal'
 import useFetchFeedback from 'hooks/useFetchFeedback'
 
 function Feedback({ id }) {

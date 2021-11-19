@@ -1,0 +1,19 @@
+.login {
+  @apply hidden px-12 w-full xl:px-24 py-2 text-dark-100 sm:inline-flex border-b-2 border-gradient-1 tracking-wide;
+}
+
+.container {
+  @apply flex flex-col items-center justify-center min-h-screen;
+}
+
+.main {
+  @apply flex flex-col xl:text-xl items-center w-full flex-1 bg-light-100;
+}
+
+.home {
+  @apply flex flex-col  xl:flex-row xl:gap-10 relative sm:max-w-2xl md:max-w-7xl xl:max-w-7xl sm:px-8;
+}
+
+.wrapper {
+  @apply flex flex-col w-full sm:max-w-xl md:max-w-5xl px-8 m-4;
+}

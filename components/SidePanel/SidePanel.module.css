@@ -1,0 +1,15 @@
+.dialog {
+  @apply fixed top-40 border pl-32 inset-0 z-10 overflow-y-auto;
+}
+
+.overlay {
+  @apply fixed inset-0 top-40 bg-dark-200 bg-opacity-60;
+}
+
+.container {
+  @apply flex justify-center p-6 w-full overflow-hidden text-left transition-all transform bg-light-100 shadow-xl h-full;
+}
+
+.wrapper {
+  @apply flex flex-col space-y-6;
+}

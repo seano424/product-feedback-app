@@ -1,0 +1,23 @@
+.container {
+  @apply flex items-center bg-dark-200 text-white justify-between p-3 sm:rounded-lg h-20;
+}
+
+.left {
+  @apply sm:flex hidden items-center gap-2;
+}
+
+.center {
+  @apply flex items-center cursor-pointer justify-between;
+}
+
+.sortable {
+  @apply bg-white w-64 m-4 rounded-lg absolute shadow sm:left-56;
+}
+
+.item {
+  @apply flex items-center justify-between border-b border-light-200 px-5 py-2 cursor-pointer;
+}
+
+.listItem {
+  @apply hover:text-primary;
+}

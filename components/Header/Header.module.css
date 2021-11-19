@@ -1,0 +1,19 @@
+.container {
+  @apply grid-cols-3 my-10 gap-2 hidden sm:grid xl:flex xl:flex-col xl:w-72 xl:fixed xl:left-24;
+}
+
+.img {
+  @apply w-full h-full xl:w-72 md:h-48 rounded-lg;
+}
+
+.title {
+  @apply absolute bottom-9 left-3 z-10 text-white mb-2 font-bold;
+}
+
+.subtitle {
+  @apply absolute bottom-5 left-3 font-extralight z-10 text-white;
+}
+
+.smallContainer {
+  @apply flex w-screen justify-between items-center px-4 py-3 bg-gradient-to-tr from-gradient-1 via-primary to-gradient-2 text-white sm:hidden h-20;
+}

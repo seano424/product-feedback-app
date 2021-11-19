@@ -1,7 +1,8 @@
 import { useFormik } from 'formik'
 import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../../firebase'
 import { signIn, useSession } from 'next-auth/react'
+import styles from './AddReply.module.css'
 
 function AddReply({ replyingTo, commentId, productId, setOpenReply }) {
   const { data: session } = useSession()
@@ -45,24 +46,21 @@ function AddReply({ replyingTo, commentId, productId, setOpenReply }) {
   })
 
   return (
-    <div className="py-4 bg-white rounded-lg mb-4">
+    <div className={styles.container}>
       <form onSubmit={formik.handleSubmit}>
         <div className="flex space-x-8">
           <input
-            placeholder={`Enter a reply to @${replyingTo} here`}
+            placeholder={`Reply @${replyingTo} here`}
             id="reply"
             name="reply"
             type="reply"
-            className="bg-light-100 flex-1 pl-4 pt-4 pb-10 active:outline-none focus:outline-none rounded-lg"
+            className="input"
             onChange={formik.handleChange}
             value={formik.values.reply}
             // value={`@${replyingTo}`}
           />
           <div>
-            <button
-              className=" bg-primary text-white px-4 py-2 rounded-lg"
-              type="submit"
-            >
+            <button className=" bg-primary button" type="submit">
               Post Reply
             </button>
           </div>

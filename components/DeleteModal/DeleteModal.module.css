@@ -1,0 +1,23 @@
+.dialog {
+  @apply fixed inset-0 z-10 overflow-y-auto;
+}
+
+.transition {
+  @apply min-h-screen px-4 text-center;
+}
+
+.overlay {
+  @apply fixed inset-0  bg-light-100 bg-opacity-30;
+}
+
+.container {
+  @apply inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl;
+}
+
+.title {
+  @apply text-lg font-medium leading-6;
+}
+
+.buttonsWrapper {
+  @apply mt-4 flex space-x-2;
+}

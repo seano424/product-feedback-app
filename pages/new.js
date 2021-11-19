@@ -5,7 +5,7 @@ import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
 import { db } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
-import ProductForm from '@/components/ProductForm'
+import ProductForm from '@/components/ProductForm/ProductForm'
 
 function New() {
   const { data: session } = useSession()

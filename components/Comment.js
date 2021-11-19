@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, query, collection } from '@firebase/firestore'
 import { db } from '../firebase'
-import MessageCard from '@/components/MessageCard'
+import MessageCard from '@/components/MessageCard/MessageCard'
 
 function Comment({ comment, id, commentId }) {
   const { content, username, name, userimage } = comment

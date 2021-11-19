@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import Back from '@/components/Back'
 import Button from '@/components/Button'
-import Tabs from '@/components/Tabs'
+import Tabs from '@/components/Tabs/Tabs'
 import useFetchFeedback from 'hooks/useFetchFeedback'
 import { useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
 import RoadmapCard from '@/components/RoadmapCard'
+import styles from './roadmap.module.css'
 
 function Roadmap() {
   const { loading } = useFetchFeedback()
@@ -21,12 +22,12 @@ function Roadmap() {
   }, [items])
 
   return (
-    <main className="xl:px-20 sm:py-8 sm:px-10">
+    <main className={styles.main}>
       {/* header */}
-      <section className="flex rounded justify-between h-28 px-10 lg:mb-10 items-center bg-dark-200 text-white">
-        <div className="flex flex-col space-y-2">
+      <section className={styles.header}>
+        <div className={styles.divider}>
           <Back color="white" />
-          <h2 className="text-xl font-bold tracking-wide ">Roadmap</h2>
+          <h2 className={styles.title}>Roadmap</h2>
         </div>
         <Button type="add" />
       </section>
@@ -34,10 +35,10 @@ function Roadmap() {
       {/* Tabs on Small Device */}
       <Tabs />
       {/* Grid on Larger Device */}
-      <section className="hidden lg:grid grid-cols-3 gap-10 px-10 xl:px-0">
+      <section className={styles.grid}>
         {Object.keys(categories).map((category) => (
           <div className="mt-4" key={category}>
-            <h2 className="font-bold tracking-wide text-xl mb-2">
+            <h2 className={styles.gridHeader}>
               {category === 'InProgress' ? 'In-Progress' : category}
             </h2>
             <p className="text-dark-100">

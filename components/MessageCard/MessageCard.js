@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AddReply from '@/components/AddReply'
+import AddReply from '@/components/AddReply/AddReply'
 import { useSession } from 'next-auth/react'
 import { TrashIcon } from '@heroicons/react/solid'
 import { useDispatch } from 'react-redux'
@@ -7,6 +7,7 @@ import {
   setOpenDestroyModal,
   setDestroyData,
 } from '@/redux/features/modal/modalSlice'
+import styles from './MessageCard.module.css'
 
 function MessageCard({
   userimage,
@@ -36,43 +37,46 @@ function MessageCard({
   }
 
   return (
-    <div
+    <section
       className={`${replyingTo && 'my-8 pl-8 '} ${
         !replyingTo && !replies && 'border-b-2 border-light-200'
-      } flex space-x-2 justify-between`}
+      } ${styles.container}`}
     >
       <img
-        className="rounded-full h-10 "
+        className="avatar"
         src={userimage ? userimage : '/assets/user-images/image-roxanne.jpg'}
         alt="user image"
       />
-      <div className="flex-1 pl-2 ">
-        <div className="flex justify-between">
+      <div className={styles.wrapper}>
+        <div className={styles.divider}>
           <div>
-            <h4 className="font-bold text-xs md:text-base text-dark-200">
-              {name}
-            </h4>
-            <p className="text-xs md:text-base text-dark-100">@{username}</p>
-            <p className="py-4 text-xs md:text-base text-dark-100">
-              {replyingTo && (
-                <span className="text-primary font-bold pr-2">
-                  @{replyingTo}
-                </span>
-              )}
-              {content}
-            </p>
-          </div>
-          <div onClick={removeReply} className="flex items-center space-x-2">
-            {session?.user.username === username && (
-              <TrashIcon className="text-[#ff5ccc] h-6 cursor-pointer" />
-            )}
+            <h4>{name}</h4>
+            <p className="text-dark-100">@{username}</p>
+            <div className="flex space-x-2">
+              <p className="py-4 text-dark-100 ">
+                {replyingTo && (
+                  <span className="text-primary font-bold pr-2">
+                    @{replyingTo}
+                  </span>
+                )}
+                {content}
+              </p>
+              <div className="flex space-x-2 py-4">
+                {session?.user.username === username && (
+                  <TrashIcon
+                    onClick={removeReply}
+                    className="text-[#ff5ccc] h-6 cursor-pointer"
+                  />
+                )}
 
-            <p
-              onClick={() => setOpenReply(!openReply)}
-              className="text-secondary font-medium cursor-pointer"
-            >
-              Reply
-            </p>
+                <p
+                  onClick={() => setOpenReply(!openReply)}
+                  className="text-secondary font-medium cursor-pointer"
+                >
+                  Reply
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         {openReply && (
@@ -84,7 +88,7 @@ function MessageCard({
           />
         )}
       </div>
-    </div>
+    </section>
   )
 }
 

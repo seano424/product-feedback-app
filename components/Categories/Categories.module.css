@@ -1,0 +1,7 @@
+.container {
+  @apply bg-white rounded-lg relative px-2 py-2 p-5 xl:h-48 h-48 w-80 sm:w-auto;
+}
+
+.wrapper {
+  @apply flex flex-wrap gap-2;
+}

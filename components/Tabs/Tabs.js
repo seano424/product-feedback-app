@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { Tab } from '@headlessui/react'
 import { useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
-import RoadmapCard from './RoadmapCard'
+import RoadmapCard from '../RoadmapCard'
+import styles from './Tabs.module.css'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -24,10 +25,10 @@ export default function Example() {
   }, [items])
 
   return (
-    <div className="w-full lg:hidden mx-auto px-2 py-16 sm:px-0">
+    <div className={styles.container}>
       {!loading && (
         <Tab.Group>
-          <Tab.List className="flex space-x-1 border-b border-light-200">
+          <Tab.List className={styles.tabList}>
             {Object.keys(categories).map((category) => (
               <Tab
                 key={category}
@@ -57,7 +58,7 @@ export default function Example() {
                   'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60'
                 )}
               >
-                <div className="flex items-center space-x-2 text-2xl font-bold tracking-wide mb-4">
+                <div className={styles.tabPanel}>
                   <h1 className="capitalize">
                     {posts[0]?.status === 'InProgress'
                       ? 'In-Progress'

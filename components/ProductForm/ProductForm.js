@@ -9,6 +9,7 @@ import {
   setOpenDestroyModal,
   setDestroyData,
 } from '@/redux/features/modal/modalSlice'
+import styles from './ProductForm.module.css'
 
 function ProductForm({
   toEdit,
@@ -31,13 +32,11 @@ function ProductForm({
   }
 
   return (
-    <main className=" bg-light-100 w-full h-full pb-10">
-      <div className="max-w-sm md:max-w-2xl mx-auto">
+    <main className={styles.main}>
+      <div className={styles.container}>
         <Back />
         {success ? (
-          <div className="h-screen flex justify-center items-center text-primary text-5xl font-black">
-            Success!
-          </div>
+          <div className={styles.success}>Success!</div>
         ) : (
           <Formik
             initialValues={{
@@ -70,25 +69,19 @@ function ProductForm({
               }, 400)
             }}
           >
-            <Form className="relative bg-white p-8 rounded-lg my-12">
-              <div className="bg-gradient-to-tr from-gradient-1 v via-primary to-gradient-2  rounded-full p-5 absolute -top-7 left-7 text-light-100">
-                <PlusIcon className="h-4" />
+            <Form className={styles.form}>
+              <div className={styles.plus}>
+                <PlusIcon className="icon" />
               </div>
-              <h1 className="text-xl md:text-2xl font-bold my-6">
+              <h1 className="text-2xl mt-2">
                 {toEdit ? `Edit ${toEdit.title}` : 'Create New Feedback'}
               </h1>
-              <div className="my-12 ">
-                <label className="font-bold text-sm md:text-lg" htmlFor="title">
-                  Feedback Title
-                </label>
-                <p className="mb-4 text-dark-100 text-xs md:text-lg max-w-sm">
+              <div className="my-4">
+                <label htmlFor="title">Feedback Title</label>
+                <p className={styles.subtitle}>
                   Add a short, descriptive headline
                 </p>
-                <Field
-                  className=" bg-light-100 p-2 active:outline-none focus:outline-none w-full rounded"
-                  name="title"
-                  type="text"
-                />
+                <Field className={styles.field} name="title" type="text" />
                 <ErrorMessage
                   component="div"
                   className="text-[red] pl-2 text-sm"
@@ -96,22 +89,13 @@ function ProductForm({
                 />
               </div>
 
-              <div className="my-12 ">
-                <label
-                  className="font-bold text-sm md:text-lg"
-                  htmlFor="category"
-                >
-                  Category
-                </label>
-                <p className="mb-4 text-dark-100 text-xs md:text-lg max-w-sm">
+              <div className="my-4">
+                <label htmlFor="category">Category</label>
+                <p className={styles.subtitle}>
                   Choose a category for your feedback
                 </p>
 
-                <Field
-                  className=" bg-light-100 p-2 active:outline-none focus:outline-none w-full rounded"
-                  as="select"
-                  name="category"
-                >
+                <Field className={styles.field} as="select" name="category">
                   <option value="feature">Feature</option>
                   <option value="ui">UI</option>
                   <option value="ux">UX</option>
@@ -125,22 +109,11 @@ function ProductForm({
                 />
               </div>
               {toEdit && (
-                <div className="my-12 ">
-                  <label
-                    className="font-bold text-sm md:text-lg"
-                    htmlFor="status"
-                  >
-                    Status
-                  </label>
-                  <p className="mb-4 text-dark-100 text-xs md:text-lg max-w-sm">
-                    Change feature state
-                  </p>
+                <div className="my-4">
+                  <label htmlFor="status">Status</label>
+                  <p className={styles.subtitle}>Change feature state</p>
 
-                  <Field
-                    className=" bg-light-100 p-2 active:outline-none focus:outline-none w-full rounded"
-                    as="select"
-                    name="status"
-                  >
+                  <Field className={styles.field} as="select" name="status">
                     <option value="suggestion">Suggestion</option>
                     <option value="planned">Planned</option>
                     <option value="in-progress">In progress</option>
@@ -154,19 +127,14 @@ function ProductForm({
                 </div>
               )}
 
-              <div className="my-12 ">
-                <label
-                  className="font-bold text-sm md:text-lg"
-                  htmlFor="description"
-                >
-                  Feedback Detail
-                </label>
-                <p className="mb-4 text-dark-100 text-xs md:text-lg max-w-sm">
+              <div className="my-4">
+                <label htmlFor="description">Feedback Detail</label>
+                <p className={styles.subtitle}>
                   Include any specific comments on what should be improved,
                   added, etc.
                 </p>
                 <Field
-                  className=" bg-light-100 p-2 pb-20 active:outline-none focus:outline-none w-full rounded"
+                  className={`${styles.field} h-28`}
                   name="description"
                   type="textfield"
                 />
@@ -182,7 +150,7 @@ function ProductForm({
                   <button
                     onClick={() => setIsDeleteButton(true)}
                     type="submit"
-                    className="px-3 py-2 bg-gradient-2 text-white rounded-lg"
+                    className="bg-gradient-2 button"
                   >
                     Delete
                   </button>
@@ -190,14 +158,11 @@ function ProductForm({
                 <div className="flex justify-end w-full space-x-2">
                   <button
                     onClick={() => setIsCancel(true)}
-                    className="px-3 py-2 bg-dark-200 text-white rounded-lg"
+                    className="bg-dark-200 button"
                   >
                     Cancel
                   </button>
-                  <button
-                    className="px-3 py-2 bg-primary text-white rounded-lg"
-                    type="submit"
-                  >
+                  <button className="bg-primary button" type="submit">
                     {toEdit ? 'Save changes' : 'Add Feedback'}
                   </button>
                 </div>

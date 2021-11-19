@@ -3,8 +3,9 @@ import { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setOpenDestroyModal } from '@/redux/features/modal/modalSlice'
 import { deleteDoc, doc } from '@firebase/firestore'
-import { db } from '../firebase'
+import { db } from '../../firebase'
 import { useRouter } from 'next/dist/client/router'
+import styles from './DeleteModal.module.css'
 
 export default function DeleteModal({ page }) {
   const dispatch = useDispatch()
@@ -65,12 +66,8 @@ export default function DeleteModal({ page }) {
   return (
     <>
       <Transition appear show={open} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
-        >
-          <div className="min-h-screen px-4 text-center">
+        <Dialog as="div" className={styles.dialog} onClose={closeModal}>
+          <div className={styles.transition}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -80,7 +77,7 @@ export default function DeleteModal({ page }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0  bg-light-100 bg-opacity-30" />
+              <Dialog.Overlay className={styles.overlay} />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -99,15 +96,12 @@ export default function DeleteModal({ page }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
+              <div className={styles.container}>
+                <Dialog.Title as="h3" className={styles.title}>
                   Are you sure?
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p>
                     {`Your ${
                       page === 'edit' ? 'feedback' : 'message'
                     } will be permanently deleted. This cannot be
@@ -115,17 +109,17 @@ export default function DeleteModal({ page }) {
                   </p>
                 </div>
 
-                <div className="mt-4 flex space-x-2">
+                <div className={styles.buttonsWrapper}>
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-light-100 bg-primary border border-transparent rounded-md hover:bg-gradient-1 focus:outline-none  "
+                    className="bg-primary button-delete  "
                     onClick={closeModal}
                   >
                     Nevermind, thanks!
                   </button>
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-light-100 bg-[#fa3333] border border-transparent rounded-md hover:bg-gradient-1 focus:outline-none  "
+                    className="bg-[#fa3333] button-delete  "
                     onClick={destroy}
                   >
                     Delete this thing

@@ -2,8 +2,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setModal } from '@/redux/features/modal/modalSlice'
-import Categories from './Categories'
-import Roadmap from './Roadmap'
+import Categories from '../Categories/Categories'
+import Roadmap from '../Roadmap/Roadmap'
+import styles from './SidePanel.module.css'
 
 export default function SidePanel() {
   const open = useSelector((state) => state.modal.open)
@@ -16,11 +17,7 @@ export default function SidePanel() {
   return (
     <>
       <Transition appear show={open} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed top-40 border pl-32 inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
-        >
+        <Dialog as="div" className={styles.dialog} onClose={closeModal}>
           <div className="h-full text-center">
             <Transition.Child
               as={Fragment}
@@ -31,7 +28,7 @@ export default function SidePanel() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 top-40 bg-dark-200 bg-opacity-60" />
+              <Dialog.Overlay className={styles.overlay} />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -47,8 +44,8 @@ export default function SidePanel() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="flex justify-center p-6 w-full overflow-hidden text-left transition-all transform bg-light-100 shadow-xl h-full">
-                <div className="flex flex-col space-y-6">
+              <div className={styles.container}>
+                <div className={styles.wrapper}>
                   <Categories />
                   <Roadmap />
                 </div>

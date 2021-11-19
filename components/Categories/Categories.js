@@ -3,6 +3,7 @@ import { handleSortBy } from '@/lib/helpers'
 import { useSession } from 'next-auth/react'
 import { useDispatch } from 'react-redux'
 import { setCategory } from '@/redux/features/productReview/productReviewSlice'
+import styles from './Categories.module.css'
 
 function Categories() {
   const [sortBy, setSortBy] = useState({
@@ -18,8 +19,8 @@ function Categories() {
   const dispatch = useDispatch()
 
   return (
-    <div className="bg-white rounded-lg relative px-2 py-2 p-5 xl:h-48 h-48 w-80 sm:w-auto">
-      <div className="flex flex-wrap gap-2">
+    <section className={styles.container}>
+      <div className={styles.wrapper}>
         <button
           onClick={() => handleSortBy('all', setSortBy, dispatch, setCategory)}
           className={` rounded-lg px-2 py-2  ${
@@ -82,7 +83,7 @@ function Categories() {
           className="rounded-full h-12 absolute bottom-2 right-2"
         />
       )}
-    </div>
+    </section>
   )
 }
 

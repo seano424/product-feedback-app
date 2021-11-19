@@ -2,15 +2,17 @@ import React from 'react'
 import { ChevronLeftIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/dist/client/router'
 import Button from './Button'
-function Back({ button }) {
+function Back({ button, color }) {
   const { back } = useRouter()
   return (
-    <div className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between">
       <div
         onClick={() => back()}
-        className="flex cursor-pointer items-center text-dark-100 tracking-tighter text-sm md:text-lg font-medium"
+        className={`flex space-x-2 cursor-pointer items-center ${
+          color ? color : 'text-dark-100'
+        } tracking-tighter text-base md:text-lg font-medium`}
       >
-        <ChevronLeftIcon className="h-4" />
+        <ChevronLeftIcon className="h-6" />
         <p>Go Back</p>
       </div>
       {button === 'edit' && <Button type="edit" />}

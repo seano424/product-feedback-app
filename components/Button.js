@@ -3,8 +3,6 @@ import { PlusIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/dist/client/router'
 import { signIn } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setModalForm } from '@/redux/features/modal/modalSlice'
 
 function Button({ type }) {
   const router = useRouter()
@@ -17,7 +15,7 @@ function Button({ type }) {
   }
   return (
     <button
-      className={`cursor-pointer text-white px-3 py-2 rounded-lg text-sm ${
+      className={`cursor-pointer h-12 text-white px-3 py-2 rounded-lg text-sm ${
         type === 'edit' && 'bg-dark-300'
       } ${type === 'add' && 'bg-primary'}`}
     >

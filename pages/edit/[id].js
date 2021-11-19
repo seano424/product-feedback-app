@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import { useSession } from 'next-auth/react'
 import { db } from '../../firebase'
-import { useDispatch } from 'react-redux'
 import DeleteModal from '@/components/DeleteModal'
 import {
   getDocs,
@@ -21,7 +20,6 @@ function Edit({ product }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-  const dispatch = useDispatch()
 
   const editProductRequest = async (values) => {
     if (loading) return

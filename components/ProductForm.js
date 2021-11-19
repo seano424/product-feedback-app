@@ -17,6 +17,7 @@ function ProductForm({
   editProductRequest,
 }) {
   const [isDeleteButton, setIsDeleteButton] = useState(false)
+  const [isCancel, setIsCancel] = useState(false)
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -55,8 +56,12 @@ function ProductForm({
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 if (!isDeleteButton) {
-                  !toEdit && addProductRequest(values)
-                  toEdit && editProductRequest(values)
+                  if (!isCancel) {
+                    !toEdit && addProductRequest(values)
+                    toEdit && editProductRequest(values)
+                  } else if (isCancel) {
+                    router.back()
+                  }
                 } else if (isDeleteButton) {
                   removeFeedbackRequest()
                 }
@@ -184,7 +189,7 @@ function ProductForm({
                 )}
                 <div className="flex justify-end w-full space-x-2">
                   <button
-                    onClick={() => router.back()}
+                    onClick={() => setIsCancel(true)}
                     className="px-3 py-2 bg-dark-200 text-white rounded-lg"
                   >
                     Cancel

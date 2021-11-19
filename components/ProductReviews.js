@@ -40,7 +40,7 @@ function ProductReviews() {
           {productReviews.length ? (
             <div className="mx-8 sm:mx-0">
               {copy().length ? (
-                copy().map((product, idx) => (
+                copy().map((product) => (
                   <Card key={product.id} id={product.id} data={product} />
                 ))
               ) : (

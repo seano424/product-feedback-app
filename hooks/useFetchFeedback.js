@@ -16,11 +16,17 @@ function useFetchFeedback() {
     async () =>
       await onSnapshot(query(collection(db, 'productRequests')), (snapshot) => {
         let tempProductReviews = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data(), comments: [], upVotes: [] }
+          return {
+            id: doc.id,
+            ...doc.data(),
+            comments: [],
+            upVotes: [],
+            replies: [],
+          }
         })
         dispatch(setProductReviews(tempProductReviews))
-        tempProductReviews.map((product) => {
-          onSnapshot(
+        tempProductReviews.map(async (product) => {
+          await onSnapshot(
             query(collection(db, 'productRequests', product.id, 'upVotes')),
             (snapshot) => {
               const tempVotes = snapshot.docs.map((doc) => {
@@ -35,8 +41,8 @@ function useFetchFeedback() {
           )
         })
 
-        tempProductReviews.map((product) => {
-          onSnapshot(
+        tempProductReviews.map(async (product) => {
+          await onSnapshot(
             query(collection(db, 'productRequests', product.id, 'comments')),
             (snapshot) => {
               const tempComments = snapshot.docs.map((doc) => {
@@ -46,8 +52,8 @@ function useFetchFeedback() {
                   productReviewId: product.id,
                 }
               })
-              tempComments.map((comment) => {
-                onSnapshot(
+              tempComments.map(async (comment) => {
+                await onSnapshot(
                   query(
                     collection(
                       db,

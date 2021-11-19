@@ -32,11 +32,45 @@ export const productReviewSlice = createSlice({
           : review
       )
     },
+    setLeastCommentsSort: (state) => {
+      state.productReviews.sort(
+        (a, b) =>
+          (a.comments.length + a.replies.length >
+            b.comments.length + b.replies.length &&
+            1) ||
+          -1
+      )
+    },
+    setMostCommentsSort: (state) => {
+      state.productReviews.sort(
+        (a, b) =>
+          (a.comments.length + a.replies.length <
+            b.comments.length + b.replies.length &&
+            1) ||
+          -1
+      )
+    },
+    setMostUpVotesSort: (state) => {
+      state.productReviews.sort((a, b) => (a.upVotes < b.upVotes && 1) || -1)
+    },
+    setLeastUpVotesSort: (state) => {
+      state.productReviews.sort((a, b) => (a.upVotes > b.upVotes && 1) || -1)
+    },
   },
 })
 
-export const { setProductReviews, setComments, setUpvotes, setReplies } =
-  productReviewSlice.actions
+export const {
+  setProductReviews,
+  setComments,
+  setUpvotes,
+  setReplies,
+  setLeastCommentsSort,
+  setMostCommentsSort,
+  setLeastUpVotesSort,
+  setMostUpVotesSort,
+  setFilter,
+  setAll,
+} = productReviewSlice.actions
 
 export const selectProductReviews = (state) =>
   state.productReview.productReviews

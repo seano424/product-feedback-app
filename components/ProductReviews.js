@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
 import Bar from './Bar'
 import Card from './Card'
 import Button from '@/components/Button'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
 import useFetchFeedback from 'hooks/useFetchFeedback'
+import { setMostUpVotesSort } from '@/redux/features/productReview/productReviewSlice'
 
 function ProductReviews() {
   const productReviews = useSelector(selectProductReviews)

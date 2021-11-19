@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
 import { signIn, useSession } from 'next-auth/react'

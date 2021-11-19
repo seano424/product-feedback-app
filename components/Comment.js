@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react'
 import { onSnapshot, query, collection } from '@firebase/firestore'
 import { db } from '../firebase'
-import { useDispatch, useSelector } from 'react-redux'
 import MessageCard from '@/components/MessageCard'
-import AddReply from '@/components/AddReply'
 
 function Comment({ comment, id, commentId }) {
   const { content, username, name, userimage } = comment
-
   const [replies, setReplies] = useState([])
 
   useEffect(

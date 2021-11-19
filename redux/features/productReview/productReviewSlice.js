@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   productReviews: [],
+  category: 'all',
 }
 
 export const productReviewSlice = createSlice({
@@ -56,6 +57,9 @@ export const productReviewSlice = createSlice({
     setLeastUpVotesSort: (state) => {
       state.productReviews.sort((a, b) => (a.upVotes > b.upVotes && 1) || -1)
     },
+    setCategory: (state, action) => {
+      state.category = action.payload
+    },
   },
 })
 
@@ -70,9 +74,12 @@ export const {
   setMostUpVotesSort,
   setFilter,
   setAll,
+  setCategory,
 } = productReviewSlice.actions
 
 export const selectProductReviews = (state) =>
   state.productReview.productReviews
+
+export const selectCategory = (state) => state.productReview.category
 
 export default productReviewSlice.reducer

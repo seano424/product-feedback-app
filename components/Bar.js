@@ -6,7 +6,7 @@ import {
   LightBulbIcon,
 } from '@heroicons/react/solid'
 import useOutsideClick from 'lib/hooks/useOutsideClick'
-
+import { handleChecked } from '@/lib/helpers'
 import Button from '@/components/Button'
 import styles from '@/styles/SuggestionBar.module.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,59 +33,6 @@ function Bar() {
   useOutsideClick(ref, () => {
     setOpenSortable(!openSortable)
   })
-
-  const handleChecked = (
-    toCheck,
-    setChecked,
-    setOpenSortable,
-    dispatch,
-    action
-  ) => {
-    switch (toCheck) {
-      case 'mostComments':
-        setChecked({
-          mostUpvotes: false,
-          leastUpvotes: false,
-          mostComments: true,
-          leastComments: false,
-        })
-        setOpenSortable(false)
-        dispatch(action())
-        break
-      case 'mostUpvotes':
-        setChecked({
-          mostUpvotes: true,
-          leastUpvotes: false,
-          mostComments: false,
-          leastComments: false,
-        })
-        setOpenSortable(false)
-        dispatch(action())
-        break
-      case 'leastComments':
-        setChecked({
-          mostUpvotes: false,
-          leastUpvotes: false,
-          mostComments: false,
-          leastComments: true,
-        })
-        dispatch(action())
-        setOpenSortable(false)
-        break
-      case 'leastUpvotes':
-        setChecked({
-          mostUpvotes: false,
-          leastUpvotes: true,
-          mostComments: false,
-          leastComments: false,
-        })
-        dispatch(action())
-        setOpenSortable(false)
-        break
-      default:
-        break
-    }
-  }
 
   const { mostComments, mostUpvotes, leastComments, leastUpvotes } = checked
 

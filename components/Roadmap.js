@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectProductReviews } from '@/redux/features/productReview/productReviewSlice'
+import { useRouter } from 'next/dist/client/router'
 
 function Roadmap() {
   const items = useSelector(selectProductReviews)
@@ -9,11 +10,17 @@ function Roadmap() {
   const inProgress = statuses.filter((i) => i === 'in-progress').length
   const suggestion = statuses.filter((i) => i === 'suggestion').length
   const live = statuses.filter((i) => i === 'live').length
+  const router = useRouter()
   return (
     <div className="flex flex-col justify-center bg-white p-5 rounded-lg xl:h-48 h-48">
       <div className="flex justify-between items-center mb-4">
         <h4 className="font-bold">Roadmap</h4>
-        <p className=" underline cursor-pointer text-secondary text-sm">View</p>
+        <p
+          onClick={() => router.push('/roadmap')}
+          className=" underline cursor-pointer text-secondary text-sm"
+        >
+          View
+        </p>
       </div>
       <div>
         <div className="flex justify-between items-center gap-5">

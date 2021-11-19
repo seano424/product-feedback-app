@@ -50,7 +50,7 @@ function Roadmap() {
         {Object.values(categories).map((posts, idx) => (
           <div>
             {posts.map((post) => (
-              <RoadmapCard key={post.id} post={post} />
+              <RoadmapCard size="sm" key={post.id} post={post} />
             ))}
           </div>
         ))}

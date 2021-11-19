@@ -1,5 +1,5 @@
 import Card from './Card'
-function RoadmapCard({ post }) {
+function RoadmapCard({ post, size }) {
   return (
     <div
       className={`border-t-8  rounded-lg ${
@@ -16,7 +16,7 @@ function RoadmapCard({ post }) {
         />
         <p>{post.status}</p>
       </div>
-      <Card size="sm" id={post.id} />
+      <Card size={size} id={post.id} />
     </div>
   )
 }

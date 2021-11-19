@@ -75,8 +75,8 @@ function Card({ id, size }) {
       <div onClick={handleClick}>
         {product && (
           <section
-            className={`px-8 h-64 md:h-80 pb-8 pt-4 mb-8 shadow-lg cursor-pointer bg-white flex flex-col ${
-              size === 'sm' ? '' : 'sm:flex-row'
+            className={`px-8 pb-8 pt-4 mb-8 shadow-lg cursor-pointer bg-white flex flex-col ${
+              size === 'sm' ? 'h-64 md:h-80' : 'sm:flex-row'
             } rounded-lg sm:justify-between gap-4 sm:gap-8`}
           >
             {/* Bigger Size Upvotes */}
